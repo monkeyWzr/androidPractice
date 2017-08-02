@@ -51,6 +51,7 @@ public class MyProvider extends ContentProvider {
             default:
                 break;
         }
+        return null;
     }
 
     @Nullable
