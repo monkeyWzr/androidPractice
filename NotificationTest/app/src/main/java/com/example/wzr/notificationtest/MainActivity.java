@@ -5,11 +5,15 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.Button;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +38,17 @@ public class MainActivity extends AppCompatActivity {
                                 .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher))
                                 .setContentIntent(pi)
                                 .setAutoCancel(true)
+//                                .setSound(Uri.fromFile(new File("/system/media/audio/ringtones/Luna.ogg")))
+//                                .setVibrate(new long[] {0, 500, 500, 500})
+//                                .setLights(Color.GREEN, 1000, 1000)
+//                                上面的三个设定可直接使用默认效果
+//                                .setDefaults(NotificationCompat.DEFAULT_ALL)
+//                                .setStyle(new NotificationCompat.BigTextStyle().bigText(
+//                                        "Learn how to build notifications, send and sync data, " +
+//                                                "and use voice actions.Get the offical Android IDE " +
+//                                                "and developer tools to build apps for Android."))
+                                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(BitmapFactory.decodeResource(getResources(), R.drawable.big_image)))
+                                .setPriority(NotificationCompat.PRIORITY_HIGH)
                                 .build();
                         manager.notify(1, notification);
                         break;
