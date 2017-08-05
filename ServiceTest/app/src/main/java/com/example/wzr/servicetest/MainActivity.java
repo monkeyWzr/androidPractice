@@ -6,6 +6,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button startService = (Button) findViewById(R.id.start_service);
+        final Button startService = (Button) findViewById(R.id.start_service);
         Button stopService = (Button) findViewById(R.id.stop_service);
-        final Button bindService = (Button) findViewById(R.id.bind_service);
-        final Button unbindService = (Button) findViewById(R.id.unbind_service);
+        Button bindService = (Button) findViewById(R.id.bind_service);
+        Button unbindService = (Button) findViewById(R.id.unbind_service);
+        Button startIntentService = (Button) findViewById(R.id.start_intent_service);
         startService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +61,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 unbindService(connection);
+            }
+        });
+        startIntentService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("MainActivity", "Thread id: " + Thread.currentThread().getId());
+                Intent intentService = new Intent(MainActivity.this, MyIntentService.class);
+                startService(intentService);
             }
         });
     }
